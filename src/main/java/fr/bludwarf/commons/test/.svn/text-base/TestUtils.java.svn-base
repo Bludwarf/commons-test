@@ -1,0 +1,38 @@
+package fr.bludwarf.commons.test;
+
+import static org.junit.Assert.assertEquals;
+
+import java.util.Map;
+
+import javax.swing.JOptionPane;
+
+public class TestUtils
+{
+	private static final String MAP_DELIM = " = ";
+
+	public static <K,V> String mapToString(Map<K, V> map)
+	{
+		final StringBuilder sb = new StringBuilder();
+
+		sb.append('{').append('\n');
+
+		for (final K key : map.keySet())
+		{
+			sb.append('\t').append(key.toString()).append(MAP_DELIM).append(map.get(key).toString()).append('\n');
+		}
+		
+		sb.append('}');
+		
+		return sb.toString();
+	}
+
+	public static void info(String msg)
+	{
+		JOptionPane.showMessageDialog(null, msg);
+	}
+
+	public static void confirm(String msg)
+	{
+		assertEquals("L'utilisateur n'a pas répondu oui à : " + msg, 0, JOptionPane.showConfirmDialog(null, msg));
+	}
+}
